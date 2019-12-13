@@ -1,38 +1,51 @@
 const cards = document.querySelectorAll('.memory_card');
-const cardsFront = document.querySelectorAll('.front-face');
+let playTimer = document.getElementById('play_btn');
+
+
+
 
 let hasFlippedCard = false;
 let lockBoard =  false;
 let firstCard, secondCard;
+let ramdomPos;
+
+
+(function shuffle() {
+    cards.forEach(cards => {
+        ramdomPos = Math.floor(Math.random()* 12);
+        cards.style.order = ramdomPos;
+    });
+
+})();
+
 
 
 
 function flipCard(){
     if (lockBoard) return;
 
+    //this.classList.add('flip');
     //if card double Click
-    if (this === firstCard){
+    if (this === firstCard)
         return;
-    }
+
     //console.log(this.childNodes[0]);
 this.getElementsByClassName('front-face')[0].classList.toggle('flip');
 
-//this.classList.toggle('flip');
-console.log(this);
+
+//console.log(this);
 
 if (!hasFlippedCard){
         //first click
         hasFlippedCard = true;
         firstCard = this;
-
-
         return;
     }
         //second click
         hasFlippedCard = false;
         secondCard = this;
 
-        console.log(cardsFront);
+        //console.log(cardsFront);
 
 
     //data attribute
@@ -40,6 +53,13 @@ if (!hasFlippedCard){
         //console.log(secondCard.dataset.framework);
 
         checkForMatch();
+
+        function restart(){
+    if (checkForMatch() === 10){
+        document.getElementById("overlay").style.display = 'block';
+        alert('vous avez gané !')
+    }
+}
 
 }
 
@@ -66,9 +86,11 @@ function disableCards() {
         firstCard.style.visibility = 'hidden';
         secondCard.style.visibility = 'hidden';
         lockBoard = false;
+    }, 500);
+   // resetBoard();
 
-    }, 1000);
 }
+
 function unflipCards(){
 
     lockBoard = true;
@@ -77,18 +99,50 @@ function unflipCards(){
     setTimeout(()=>{
         firstCard.getElementsByClassName('front-face')[0].classList.toggle('flip');
         secondCard.getElementsByClassName('front-face')[0].classList.toggle('flip');
+        //firstCard.classList.remove('flip');
+        //secondCard.classList.remove('flip');
+        //lockBoard = false;---// a retirer avec la fonction 'resetBoard()'
         lockBoard = false;
-    }, 1000);
+    }, 800);
 
 }
-/*function resetBoard(){
-    [hasFlippedCard, lockBoard] = [false, false];
-    [firstCard, secondCard] = [null, null];
-}*/
+function congratulation(){
+    if (checkForMatch.length === 12){
+        document.getElementById("overlay").style.display = 'none';
+        console.log(checkForMatch.length)
+    }
+}
 
 cards.forEach(cards => cards.addEventListener('click', flipCard));
-cardsFront.forEach( cardsFront => cardsFront.addEventListener('click', flipCard));
+
+//TODO: overlay button:--------------------------
+
+function off() {
+    document.getElementById("overlay").style.display = 'none';
+}
+
+//TODO: game timer---------------------------------
+
+var second = 0, minute = 0;
+var timer = document.getElementById('timer');
+var interval;
+
+
+function startTimer() {
+    interval = setInterval(function () {
+        timer.innerHTML = minute +  ":mins "+ " " + second +  ":sec ";
+
+        second++;
+        if (second === 60 ){
+            minute++;
+            second = 0;
+        }
+
+    },1000);
+
+}
 
 
 
-flipCard();
+
+
