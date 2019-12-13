@@ -7,13 +7,13 @@ let playTimer = document.getElementById('play_btn');
 let hasFlippedCard = false;
 let lockBoard =  false;
 let firstCard, secondCard;
-let ramdomPos;
+let ramdomCards;
 
 
 (function shuffle() {
     cards.forEach(cards => {
-        ramdomPos = Math.floor(Math.random()* 12);
-        cards.style.order = ramdomPos;
+        ramdomCards = Math.floor(Math.random()* 12);
+        cards.style.order = ramdomCards;
     });
 
 })();
@@ -54,13 +54,6 @@ if (!hasFlippedCard){
 
         checkForMatch();
 
-        function restart(){
-    if (checkForMatch() === 10){
-        document.getElementById("overlay").style.display = 'block';
-        alert('vous avez gané !')
-    }
-}
-
 }
 
 function checkForMatch() {
@@ -74,6 +67,7 @@ function checkForMatch() {
   }*/
 let isMatch = firstCard.dataset.framework === secondCard.dataset.framework;
 isMatch ? disableCards() : unflipCards();
+
 // isMatch if is true:funct 'disablecards()', if is false:funct 'unflipcards'
 }
 
@@ -107,7 +101,7 @@ function unflipCards(){
 
 }
 function congratulation(){
-    if (checkForMatch.length === 12){
+    if (checkForMatch.length === 10){
         document.getElementById("overlay").style.display = 'none';
         console.log(checkForMatch.length)
     }

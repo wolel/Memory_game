@@ -27,8 +27,8 @@ h1{
 
 }
 #timer{
-    margin-left: 84vh;
-    margin-top: 15vh;
+    margin-left: 68vh;
+    margin-top: 18vh;
     position: absolute;
     font-size: 20px;
     color: white;
@@ -72,7 +72,7 @@ h1{
 
 
 .memory_game{
-    width: 540px;
+    width: 817px;
     height: 540px;
     display: flex;
     flex-wrap: wrap;
@@ -81,7 +81,7 @@ h1{
 
 }
 .memory_card{
-    width: calc(25% - 10px);
+    width: calc(17% - 10px);
     height: calc(33.33% - 10px);
     overflow: hidden;
     position: relative;
