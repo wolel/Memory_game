@@ -6,7 +6,9 @@
 body{
     height: 100vh;
     display: flex;
-    background-color: #445;box-shadow:  1px 1px 0 #333;
+    /*background-color: #445;box-shadow:  1px 1px 0 #333;*/
+    background-image: url("img/gey_doted_back_2.jpg");
+    background-size: cover;
 
 
 }
