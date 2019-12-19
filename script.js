@@ -1,8 +1,14 @@
 const cards = document.querySelectorAll('.memory_card');
 let playTimer = document.getElementById('play_btn');
 
+var frontface = document.getElementsByClassName('front-face');
 
+for (var i = 0; i < frontface.length; i++){
+    frontface[i].setAttribute("src", "img/front_face_justFace.jpg");
 
+}
+
+console.log(frontface.setAttribute);
 
 let hasFlippedCard = false;
 let lockBoard =  false;
@@ -23,7 +29,6 @@ let ramdomCards;
 
 function flipCard(){
     if (lockBoard) return;
-
     //this.classList.add('flip');
     //if card double Click
     if (this === firstCard)
@@ -33,7 +38,7 @@ function flipCard(){
 this.getElementsByClassName('front-face')[0].classList.toggle('flip');
 
 
-//console.log(this);
+console.log(this);
 
 if (!hasFlippedCard){
         //first click
